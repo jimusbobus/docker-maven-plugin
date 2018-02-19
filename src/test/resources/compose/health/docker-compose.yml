@@ -1,0 +1,26 @@
+version: 2.1
+
+services:
+  service1:
+    healthcheck:
+      test: ["exit 0"]
+
+  service2:
+    healthcheck:
+      test: ["exit 0"]
+
+  service3:
+    healthcheck:
+      test: ["exit 0"]
+    depends_on:
+      service1:
+          condition: service_healthy
+
+  service4:
+    healthcheck:
+      test: ["exit 0"]
+    depends_on:
+      service2:
+          condition: service_healthy
+      service3:
+          condition: service_started

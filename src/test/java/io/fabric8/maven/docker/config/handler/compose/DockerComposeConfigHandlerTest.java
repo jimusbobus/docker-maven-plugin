@@ -90,6 +90,12 @@ public class DockerComposeConfigHandlerTest {
 
     }
 
+    @Test
+    public void healthCheckTest() throws IOException, MavenFilteringException {
+        setupComposeExpectations("health/docker-compose.yml");
+        assertNotNull(handler.resolve(unresolved, project, session));
+    }
+
     private void setupComposeExpectations(final String file) throws IOException, MavenFilteringException {
         new Expectations() {{
             final File input = getAsFile("/compose/" + file);
